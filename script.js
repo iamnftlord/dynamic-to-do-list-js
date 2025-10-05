@@ -20,19 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Create a new list item and set its text
         const li = document.createElement('li');
-        li.textContent = taskText; // set the task text
+        li.textContent = taskText;
 
         // Create the remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
-        removeBtn.className = 'remove-btn';
+        removeBtn.classList.add('remove-btn'); // ✅ uses classList.add as required
 
         // When remove button is clicked, remove this task (li) from the list
         removeBtn.onclick = function () {
-            // Remove the list item from the task list
-            if (li && taskList.contains(li)) {
-                taskList.removeChild(li);
-            }
+            taskList.removeChild(li);
         };
 
         // Append the remove button to the list item, then append the li to the task list
@@ -41,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Clear the input field
         taskInput.value = '';
-        taskInput.focus();
     }
 
     // Attach event listener to the "Add Task" button
@@ -53,9 +49,4 @@ document.addEventListener('DOMContentLoaded', function () {
             addTask();
         }
     });
-
-    // If the input already has text on load, invoke addTask (safe check to avoid empty alert)
-    if (taskInput.value && taskInput.value.trim() !== '') {
-        addTask();
-    }
 });
